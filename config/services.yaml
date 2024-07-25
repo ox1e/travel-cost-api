@@ -1,0 +1,19 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    App\Service\TravelCostCalculator:
+        arguments:
+            - ['@App\Service\DiscountStrategy\EarlyBookingDiscountStrategy']
+
+    App\Service\DiscountStrategy\EarlyBookingDiscountStrategy: ~
